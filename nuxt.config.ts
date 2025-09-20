@@ -69,7 +69,10 @@ export default defineNuxtConfig({
       extensions: ['.vue'],
     }
   ],
-  modules: ['@nuxt/image'],
+  modules: [
+    'nuxt-security',
+    '@nuxt/image'
+  ],
   image: {
     domains: ['images.unsplash.com'],
     providers: {
@@ -90,6 +93,22 @@ export default defineNuxtConfig({
     }
   },
   ssr: false,
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        'default-src': ["'self'"],
+        'img-src': ["'self'", 'https:', 'data:'],
+        'script-src': ["'self'"],
+        'style-src': ["'self'", "'unsafe-inline'"], // Optional if using inline styles (e.g. Tailwind)
+        'font-src': ["'self'", 'https:', 'data:'],
+        'connect-src': ["'self'", 'https://images.unsplash.com'],
+        'frame-src': ["'none'"],
+        'object-src': ["'none'"],
+        'base-uri': ["'self'"],
+        'form-action': ["'self'"]
+      }
+    }
+  },
   nitro: {
     preset: 'github-pages'
   },

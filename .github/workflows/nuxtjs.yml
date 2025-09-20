@@ -3,8 +3,8 @@ name: Deploy Nuxt site to Pages
 
 on:
   push:
-    branches: ["main"]   # otomatis jalan kalau push ke branch main
-  workflow_dispatch:     # bisa dijalankan manual dari tab Actions
+    branches: ["main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -28,12 +28,19 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies
+      - name: Show Node and Nuxt version
         run: |
-          rm -rf node_modules package-lock.json
-          npm install
+          node -v
+          npx nuxi --version
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Build Nuxt site (generate static)
         run: npm run generate
+
+      - name: Show dist contents
+        run: ls -lh dist
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
