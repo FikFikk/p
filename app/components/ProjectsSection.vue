@@ -40,11 +40,17 @@
               <div class="relative overflow-hidden rounded-3xl shadow-2xl group-hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]">
                 <!-- Image container -->
                 <div class="relative h-80 lg:h-96 overflow-hidden bg-gradient-to-br from-sky-100 to-blue-100 dark:from-gray-800 dark:to-gray-700">
-                  <img 
+                  <NuxtImg 
                     :src="project.image" 
                     :alt="project.title"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  >
+                    width="600"
+                    height="400"
+                    sizes="sm:600px lg:800px"
+                    loading="lazy"
+                    format="webp"
+                    quality="75"
+                  />
                   
                   <!-- Overlay -->
                   <div class="absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent"></div>

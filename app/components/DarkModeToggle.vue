@@ -41,97 +41,109 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, onMounted, nextTick, watch } from 'vue'
 import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline'
 
 const isDark = ref(false)
 
-// Simple and reliable dark mode implementation
-const initDarkMode = () => {
-  const html = document.documentElement
-  const savedTheme = localStorage.getItem('theme')
-  
-  console.log('Initializing dark mode:', { savedTheme, hasClass: html.classList.contains('dark') })
-  
-  if (savedTheme === 'dark') {
-    html.classList.add('dark')
-    isDark.value = true
-    console.log('Set to dark mode from localStorage')
-  } else if (savedTheme === 'light') {
-    html.classList.remove('dark')
-    isDark.value = false
-    console.log('Set to light mode from localStorage')
-  } else {
-    // Use system preference
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    console.log('No saved theme, system prefers dark:', prefersDark)
-    if (prefersDark) {
-      html.classList.add('dark')
-      isDark.value = true
-      console.log('Set to dark mode from system preference')
-    } else {
-      html.classList.remove('dark')
-      isDark.value = false
-      console.log('Set to light mode from system preference')
-    }
-  }
-  
-  console.log('Final state:', { isDark: isDark.value, classList: Array.from(html.classList) })
+// Debug function
+const debugLog = (message, data = {}) => {
+  console.log(`[Dark Mode Debug] ${message}:`, data)
 }
 
-const toggleDarkMode = (event) => {
-  console.log('Toggle clicked, current isDark:', isDark.value)
-  
+// Force refresh theme
+const applyTheme = (dark) => {
   const html = document.documentElement
   
-  isDark.value = !isDark.value
+  debugLog('Applying theme', { dark, currentClasses: Array.from(html.classList) })
   
-  console.log('New isDark value:', isDark.value)
+  // Force remove all theme classes first
+  html.classList.remove('dark', 'light')
   
-  if (isDark.value) {
+  // Force add the correct class
+  if (dark) {
     html.classList.add('dark')
     localStorage.setItem('theme', 'dark')
-    console.log('Added dark class, localStorage set to dark')
+    debugLog('Applied dark theme', { classList: Array.from(html.classList) })
   } else {
-    html.classList.remove('dark')
+    html.classList.add('light')
     localStorage.setItem('theme', 'light')
-    console.log('Removed dark class, localStorage set to light')
+    debugLog('Applied light theme', { classList: Array.from(html.classList) })
   }
   
-  console.log('Final classList:', Array.from(html.classList))
-  console.log('Document has dark class:', html.classList.contains('dark'))
-  
-  // Visual feedback
-  if (event?.currentTarget) {
-    const button = event.currentTarget
-    button.style.transform = 'scale(0.95)'
-    setTimeout(() => {
-      button.style.transform = ''
-    }, 150)
-  }
+  // Force repaint
+  document.body.style.display = 'none'
+  document.body.offsetHeight // Force reflow
+  document.body.style.display = ''
 }
 
-onMounted(() => {
-  initDarkMode()
+const toggleDarkMode = () => {
+  debugLog('Toggle clicked', { currentIsDark: isDark.value })
+  
+  isDark.value = !isDark.value
+  applyTheme(isDark.value)
+  
+  debugLog('Toggle completed', { 
+    newIsDark: isDark.value,
+    htmlClasses: Array.from(document.documentElement.classList),
+    localStorage: localStorage.getItem('theme')
+  })
+}
+
+const initTheme = () => {
+  if (typeof window === 'undefined') return
+  
+  debugLog('Initializing theme')
+  
+  const savedTheme = localStorage.getItem('theme')
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  
+  debugLog('Theme detection', { savedTheme, systemPrefersDark })
+  
+  let shouldBeDark = false
+  
+  if (savedTheme === 'dark') {
+    shouldBeDark = true
+  } else if (savedTheme === 'light') {
+    shouldBeDark = false
+  } else {
+    shouldBeDark = systemPrefersDark
+  }
+  
+  isDark.value = shouldBeDark
+  applyTheme(shouldBeDark)
+  
+  debugLog('Theme initialized', { 
+    isDark: isDark.value, 
+    htmlClasses: Array.from(document.documentElement.classList) 
+  })
+}
+
+// Watch for reactive changes
+watch(isDark, (newValue) => {
+  debugLog('isDark changed reactively', { newValue })
+  applyTheme(newValue)
+})
+
+onMounted(async () => {
+  await nextTick()
+  
+  debugLog('Component mounted, starting initialization')
+  
+  // Small delay to ensure DOM is ready
+  setTimeout(() => {
+    initTheme()
+  }, 100)
   
   // Listen for system theme changes
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
   const handleSystemChange = (e) => {
     if (!localStorage.getItem('theme')) {
-      if (e.matches) {
-        document.documentElement.classList.add('dark')
-        isDark.value = true
-      } else {
-        document.documentElement.classList.remove('dark')
-        isDark.value = false
-      }
+      debugLog('System theme changed', { matches: e.matches })
+      isDark.value = e.matches
     }
   }
   
   mediaQuery.addEventListener('change', handleSystemChange)
-  
-  onUnmounted(() => {
-    mediaQuery.removeEventListener('change', handleSystemChange)
-  })
 })
 </script>

@@ -40,7 +40,9 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/p/favicon.ico' },
-        { rel: 'canonical', href: 'https://fikfikk.github.io/p/' }
+        { rel: 'canonical', href: 'https://fikfikk.github.io/p/' },
+        { rel: 'preconnect', href: 'https://images.unsplash.com' },
+        { rel: 'dns-prefetch', href: 'https://images.unsplash.com' }
       ],
       // script: [
       //   {
@@ -67,7 +69,26 @@ export default defineNuxtConfig({
       extensions: ['.vue'],
     }
   ],
-  // modules: ['@nuxtjs/tailwindcss'],
+  modules: ['@nuxt/image'],
+  image: {
+    domains: ['images.unsplash.com'],
+    providers: {
+      unsplash: {
+        baseURL: 'https://images.unsplash.com/'
+      }
+    },
+    formats: ['webp', 'avif', 'jpg'],
+    quality: 80,
+    densities: [1, 2],
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1536
+    }
+  },
   ssr: false,
   nitro: {
     preset: 'github-pages'
