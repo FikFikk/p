@@ -120,7 +120,12 @@
               
               <!-- Profile image -->
               <div class="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/50 dark:border-gray-700/50 shadow-2xl backdrop-blur-sm">
-                <NuxtImg 
+                <img 
+                  src="~/assets/img/hero.jpg" 
+                  alt="Mochammad Fikri Dwi Fardian - Full Stack Developer" 
+                  class="w-full h-full object-cover"
+                >
+                <!-- <NuxtImg 
                   src="/img/hero.jpg"
                   alt="Mochammad Fikri Dwi Fardian - Full Stack Developer"
                   class="w-full h-full object-cover"
@@ -130,7 +135,7 @@
                   priority
                   format="webp"
                   quality="80"
-                />
+                /> -->
                 <!-- Overlay gradient -->
                 <div class="absolute inset-0 bg-gradient-to-t from-sky-900/20 to-transparent"></div>
               </div>
