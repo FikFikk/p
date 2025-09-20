@@ -73,6 +73,67 @@ export default defineNuxtConfig({
     'nuxt-security',
     '@nuxt/image'
   ],
+  // security: {
+  //   headers: {
+  //     contentSecurityPolicy: {
+  //       'default-src': ["'self'"],
+  //       'img-src': ["'self'", 'https:', 'data:'],
+  //       'script-src': ["'self'"],
+  //       'style-src': ["'self'", "'unsafe-inline'"],
+  //       'font-src': ["'self'", 'https:', 'data:'],
+  //       'connect-src': ["'self'", 'https://images.unsplash.com'],
+  //       'frame-src': ["'none'"],
+  //       'object-src': ["'none'"],
+  //       'base-uri': ["'self'"],
+  //       'form-action': ["'self'"]
+  //     },
+  //     permissionsPolicy: {
+  //       camera: [],
+  //       microphone: [],
+  //       geolocation: [],
+  //       fullscreen: ["*"]
+  //     },
+  //     crossOriginEmbedderPolicy: 'require-corp',
+  //     crossOriginOpenerPolicy: 'same-origin',
+  //     crossOriginResourcePolicy: 'same-origin',
+  //     originAgentCluster: '?1',
+  //     referrerPolicy: 'strict-origin-when-cross-origin',
+  //     strictTransportSecurity: {
+  //       maxAge: 63072000,
+  //       includeSubdomains: true,
+  //       preload: true
+  //     },
+  //     xContentTypeOptions: 'nosniff',
+  //     xDNSPrefetchControl: 'off',
+  //     xDownloadOptions: 'noopen',
+  //     xFrameOptions: 'SAMEORIGIN',
+  //     xPermittedCrossDomainPolicies: 'none',
+  //     xXSSProtection: '1; mode=block'
+  //   },
+  //   rateLimiter: {
+  //     tokensPerInterval: 150,
+  //     interval: 'minute'
+  //   },
+  //   requestSizeLimiter: {
+  //     maxRequestSizeInBytes: 1024000, // 1MB
+  //     maxUploadFileRequestInBytes: 10485760 // 10MB
+  //   },
+  //   xssValidator: {},
+  //   corsHandler: {
+  //     origin: '*',
+  //     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  //     allowHeaders: ['Content-Type', 'Authorization'],
+  //     exposeHeaders: [],
+  //     credentials: false,
+  //     maxAge: '86400'
+  //   },
+  //   allowedMethodsRestricter: {
+  //     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+  //   },
+  //   basicAuth: false,
+  //   csrf: false,
+  //   hidePoweredBy: true
+  // },
   image: {
     domains: ['images.unsplash.com'],
     providers: {
@@ -93,22 +154,6 @@ export default defineNuxtConfig({
     }
   },
   ssr: false,
-  security: {
-    headers: {
-      contentSecurityPolicy: {
-        'default-src': ["'self'"],
-        'img-src': ["'self'", 'https:', 'data:'],
-        'script-src': ["'self'"],
-        'style-src': ["'self'", "'unsafe-inline'"], // Optional if using inline styles (e.g. Tailwind)
-        'font-src': ["'self'", 'https:', 'data:'],
-        'connect-src': ["'self'", 'https://images.unsplash.com'],
-        'frame-src': ["'none'"],
-        'object-src': ["'none'"],
-        'base-uri': ["'self'"],
-        'form-action': ["'self'"]
-      }
-    }
-  },
   nitro: {
     preset: 'github-pages'
   },
