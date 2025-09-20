@@ -121,7 +121,7 @@
               <!-- Profile image -->
               <div class="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/50 dark:border-gray-700/50 shadow-2xl backdrop-blur-sm">
                 <img 
-                  src="~/assets/img/hero.jpg" 
+                  src="~/assets/img/hero.webp" 
                   alt="Mochammad Fikri Dwi Fardian - Full Stack Developer" 
                   class="w-full h-full object-cover"
                 >
