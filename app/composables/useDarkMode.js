@@ -1,49 +1,49 @@
-// composables/useDarkMode.js
-import { ref, onMounted } from 'vue'
+// // composables/useDarkMode.js
+// import { ref, onMounted } from 'vue'
 
-export const useDarkMode = () => {
-  const isDark = ref(false)
+// export const useDarkMode = () => {
+//   const isDark = ref(false)
 
-  const setDarkMode = (dark) => {
-    isDark.value = dark
-    const html = document.documentElement
+//   const setDarkMode = (dark) => {
+//     isDark.value = dark
+//     const html = document.documentElement
     
-    if (dark) {
-      html.classList.add('dark')
-      localStorage.setItem('theme', 'dark')
-    } else {
-      html.classList.remove('dark')
-      localStorage.setItem('theme', 'light')
-    }
-  }
+//     if (dark) {
+//       html.classList.add('dark')
+//       localStorage.setItem('theme', 'dark')
+//     } else {
+//       html.classList.remove('dark')
+//       localStorage.setItem('theme', 'light')
+//     }
+//   }
 
-  const toggleDarkMode = () => {
-    setDarkMode(!isDark.value)
-  }
+//   const toggleDarkMode = () => {
+//     setDarkMode(!isDark.value)
+//   }
 
-  const initDarkMode = () => {
-    if (typeof window === 'undefined') return
+//   const initDarkMode = () => {
+//     if (typeof window === 'undefined') return
     
-    const savedTheme = localStorage.getItem('theme')
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+//     const savedTheme = localStorage.getItem('theme')
+//     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     
-    if (savedTheme === 'dark') {
-      setDarkMode(true)
-    } else if (savedTheme === 'light') {
-      setDarkMode(false)
-    } else {
-      setDarkMode(prefersDark)
-    }
-  }
+//     if (savedTheme === 'dark') {
+//       setDarkMode(true)
+//     } else if (savedTheme === 'light') {
+//       setDarkMode(false)
+//     } else {
+//       setDarkMode(prefersDark)
+//     }
+//   }
 
-  onMounted(() => {
-    initDarkMode()
-  })
+//   onMounted(() => {
+//     initDarkMode()
+//   })
 
-  return {
-    isDark,
-    toggleDarkMode,
-    setDarkMode,
-    initDarkMode
-  }
-}
+//   return {
+//     isDark,
+//     toggleDarkMode,
+//     setDarkMode,
+//     initDarkMode
+//   }
+// }
