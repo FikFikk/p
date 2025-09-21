@@ -35,44 +35,41 @@
         >
           <div class="flex flex-col lg:flex-row gap-12 items-center">
             
-            <!-- Project Image -->
-            <div class="flex-1">
-              <div class="relative overflow-hidden rounded-3xl shadow-2xl group-hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]">
-                <!-- Image container -->
-                <div class="relative h-80 lg:h-96 overflow-hidden bg-gradient-to-br from-sky-100 to-blue-100 dark:from-gray-800 dark:to-gray-700">
-                  <NuxtImg 
-                    :src="project.image" 
-                    :alt="project.title"
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    width="600"
-                    height="400"
-                    sizes="sm:600px lg:800px"
-                    loading="lazy"
-                    format="webp"
-                    quality="75"
-                  />
-                  
-                  <!-- Overlay -->
-                  <div class="absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent"></div>
-                  
-                  <!-- Project type badge -->
-                  <div class="absolute top-6 left-6">
-                    <span class="px-4 py-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm text-sky-600 dark:text-sky-400 text-sm font-semibold rounded-2xl border border-sky-200/50 dark:border-sky-700/50 shadow-lg">
-                      {{ project.type }}
-                    </span>
-                  </div>
-                  
-                  <!-- View Demo Button -->
-                  <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                    <a 
-                      :href="project.demoUrl" 
-                      target="_blank"
-                      class="flex items-center px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
-                    >
-                      <EyeIcon class="w-4 h-4 mr-2" />
-                      View Demo
-                    </a>
-                  </div>
+            <!-- Project Image Carousel -->
+            <div class="flex-1 relative">
+              <ProjectCarousel
+                :images="project.images"
+                :title="project.title"
+                :auto-play="true"
+                :auto-play-interval="4000"
+              />
+              
+              <!-- Project type badge -->
+              <div class="absolute top-6 left-6 z-10">
+                <span class="px-4 py-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm text-sky-600 dark:text-sky-400 text-sm font-semibold rounded-2xl border border-sky-200/50 dark:border-sky-700/50 shadow-lg">
+                  {{ project.type }}
+                </span>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="absolute bottom-6 right-6 z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                <div class="flex gap-2">
+                  <a 
+                    :href="project.demoUrl" 
+                    target="_blank"
+                    class="flex items-center px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    <EyeIcon class="w-4 h-4 mr-2" />
+                    Live Demo
+                  </a>
+                  <a 
+                    :href="project.githubUrl" 
+                    target="_blank"
+                    class="flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-900 text-white text-sm font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    <GitHubIcon class="w-4 h-4 mr-2" />
+                    Code
+                  </a>
                 </div>
               </div>
             </div>
@@ -177,13 +174,22 @@ import {
 } from '@heroicons/vue/24/outline'
 
 import GitHubIcon from '../icons/GitHubIcon.vue'
+import ProjectCarousel from './ProjectCarousel.vue'
 
 const projectsData = [
   {
     title: 'Integrated Management System for Compliance & Quality',
     type: 'Enterprise Web App',
     description: 'A robust web application for implementing and managing Quality Management Systems (SMM) and Anti-Bribery Management Systems (SMAP). This integrated platform helps organizations ensure compliance and drive operational excellence.',
-    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    images: [
+      '/img/projects/simmap/admin-dashboard.webp',
+      '/img/projects/simmap/admin-project.webp',
+      '/img/projects/simmap/admin-smap.webp',
+      '/img/projects/simmap/admin-pelaksanaan.webp',
+      '/img/projects/simmap/admin-user.webp',
+      '/img/projects/simmap/admin-company.webp',
+      '/img/projects/simmap/admin-audit.webp'
+    ],
     features: [
       'Secure document control & lifecycle management',
       'Real-time project monitoring & progress tracking', 
@@ -194,13 +200,21 @@ const projectsData = [
     ],
     techStack: ['Laravel Framework', 'PHP 8+', 'MySQL', 'JavaScript', 'Bootstrap 5'],
     githubUrl: 'https://github.com/fikfikk',
-    demoUrl: '#'
+    demoUrl: 'https://sismap.inkindojawatimur.org/'
   },
   {
     title: 'Hostel Operations & Tenant Management Platform',
     type: 'Property Management',
     description: 'A dedicated web application for efficient management of monthly hostel/boarding house operations. It features a public portal for property visibility and a dual-role system (Admin/Tenant) for streamlined operational control and convenient tenant self-service.',
-    image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2126&q=80',
+    images: [
+      '/img/projects/kostash/landing.webp',
+      '/img/projects/kostash/admin-dashboard.webp',
+      '/img/projects/kostash/admin-meter.webp',
+      '/img/projects/kostash/admin-meter-gridview.webp',
+      '/img/projects/kostash/admin-gallery.webp',
+      '/img/projects/kostash/admin-transaction.webp',
+      '/img/projects/kostash/admin-report.webp'
+    ],
     features: [
       'Public-facing portal showcasing property details & amenities',
       'Secure dual-role access for administrators & tenants',
@@ -211,7 +225,7 @@ const projectsData = [
     ],
     techStack: ['Laravel Framework', 'PHP', 'MySQL', 'JavaScript', 'Bootstrap', 'PDF Generation'],
     githubUrl: 'https://github.com/fikfikk',
-    demoUrl: '#'
+    demoUrl: 'https://fikfikk.github.io/kostash.id/'
   }
 ]
 </script>
