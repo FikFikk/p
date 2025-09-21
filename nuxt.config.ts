@@ -42,7 +42,25 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/p/favicon.ico' },
         { rel: 'canonical', href: 'https://fikfikk.github.io/p/' },
         { rel: 'preconnect', href: 'https://images.unsplash.com' },
-        { rel: 'dns-prefetch', href: 'https://images.unsplash.com' }
+        { rel: 'dns-prefetch', href: 'https://images.unsplash.com' },
+        // Preload all main project images for optimal LCP and gallery experience
+        { rel: 'preload', as: 'image', href: '/img/projects/simmap/admin-dashboard.webp' },
+        { rel: 'preload', as: 'image', href: '/img/projects/simmap/admin-project.webp' },
+        { rel: 'preload', as: 'image', href: '/img/projects/simmap/admin-smap.webp' },
+        { rel: 'preload', as: 'image', href: '/img/projects/simmap/admin-pelaksanaan.webp' },
+        { rel: 'preload', as: 'image', href: '/img/projects/simmap/admin-user.webp' },
+        { rel: 'preload', as: 'image', href: '/img/projects/simmap/admin-company.webp' },
+        { rel: 'preload', as: 'image', href: '/img/projects/simmap/admin-audit.webp' },
+        // Kostash project images
+        { rel: 'preload', as: 'image', href: '/img/projects/kostash/landing.webp' },
+        { rel: 'preload', as: 'image', href: '/img/projects/kostash/admin-dashboard.webp' },
+        { rel: 'preload', as: 'image', href: '/img/projects/kostash/admin-gallery.webp' },
+        { rel: 'preload', as: 'image', href: '/img/projects/kostash/admin-meter.webp' },
+        { rel: 'preload', as: 'image', href: '/img/projects/kostash/admin-meter-gridview.webp' },
+        { rel: 'preload', as: 'image', href: '/img/projects/kostash/admin-transaction.webp' },
+        { rel: 'preload', as: 'image', href: '/img/projects/kostash/admin-report.webp' },
+        // Preload favicon (opsional)
+        { rel: 'preload', as: 'image', href: '/p/favicon.ico' }
       ],
       // script: [
       //   {
@@ -155,7 +173,11 @@ export default defineNuxtConfig({
   },
   ssr: false,
   nitro: {
-    preset: 'github-pages'
+    preset: 'github-pages',
+    routeRules: {
+      '/img/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } }
+    }
   },
   compatibilityDate: "2025-09-17",
   devtools: { enabled: true },
