@@ -22,27 +22,33 @@
       </Transition>
       
       <!-- Navigation Overlay -->
-      <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <!-- Navigation Arrows -->
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        @touchstart="onTouchStart"
+        @touchmove="onTouchMove"
+        @touchend="onTouchEnd"
+        @click="isMobile ? openModal() : null"
+        style="cursor: pointer;"
+      >
+        <!-- Navigation Arrows (hidden on mobile) -->
         <button
           v-if="images.length > 1"
-          @click="prevImage"
-          class="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-sky-600/80 hover:bg-sky-400/90 backdrop-blur-sm rounded-full text-white transition-all duration-200 hover:scale-110"
+          @click.stop="prevImage"
+          class="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-sky-600/80 hover:bg-sky-400/90 backdrop-blur-sm rounded-full text-white transition-all duration-200 hover:scale-110 hidden sm:block"
         >
           <ChevronLeftIcon class="w-5 h-5 text-white drop-shadow-[0_0_6px_#38bdf8]" />
         </button>
-        
         <button
           v-if="images.length > 1"
-          @click="nextImage"
-          class="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-sky-600/80 hover:bg-sky-400/90 backdrop-blur-sm rounded-full text-white transition-all duration-200 hover:scale-110"
+          @click.stop="nextImage"
+          class="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-sky-600/80 hover:bg-sky-400/90 backdrop-blur-sm rounded-full text-white transition-all duration-200 hover:scale-110 hidden sm:block"
         >
           <ChevronRightIcon class="w-5 h-5 text-white drop-shadow-[0_0_6px_#38bdf8]" />
         </button>
-        
-        <!-- Fullscreen Button -->
+        <!-- Fullscreen Button (desktop only) -->
         <button
-          @click="openModal"
+          v-if="!isMobile"
+          @click.stop="openModal"
           class="absolute top-4 right-4 p-3 bg-sky-600/80 hover:bg-sky-400/90 shadow-lg shadow-sky-400/40 border-2 border-white/60 rounded-full text-white transition-all duration-200 hover:scale-110 ring-2 ring-sky-400/40 z-20"
         >
           <ArrowsPointingOutIcon class="w-5 h-5" />
@@ -141,6 +147,32 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+// Detect mobile device
+const isMobile = ref(false)
+onMounted(() => {
+  isMobile.value = window.innerWidth < 640
+  window.addEventListener('resize', () => {
+    isMobile.value = window.innerWidth < 640
+  })
+})
+// Touch swipe support for mobile
+let touchStartX = 0
+let touchEndX = 0
+const onTouchStart = (e) => {
+  if (!isMobile.value) return
+  touchStartX = e.touches[0].clientX
+}
+const onTouchMove = (e) => {
+  if (!isMobile.value) return
+  touchEndX = e.touches[0].clientX
+}
+const onTouchEnd = () => {
+  if (!isMobile.value) return
+  if (touchStartX - touchEndX > 40) nextImage()
+  else if (touchEndX - touchStartX > 40) prevImage()
+  touchStartX = 0
+  touchEndX = 0
+}
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
