@@ -7,17 +7,14 @@
         name="carousel"
         mode="out-in"
       >
-        <NuxtImg 
+        <img 
           :key="currentIndex"
           :src="images[currentIndex]" 
           :alt="`${title} - Screenshot ${currentIndex + 1}`"
           class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           width="600"
           height="400"
-          sizes="sm:600px lg:800px"
           loading="lazy"
-          format="webp"
-          quality="80"
         />
       </Transition>
       
@@ -97,13 +94,11 @@
             
             <!-- Full Size Image -->
             <div class="relative rounded-2xl overflow-hidden">
-              <NuxtImg 
+              <img 
                 :src="images[modalIndex]" 
                 :alt="`${title} - Screenshot ${modalIndex + 1}`"
                 class="w-full h-auto max-h-[80vh] object-contain"
-                format="webp"
-                quality="90"
-            />
+              />
                 <!-- sizes="100vw" -->
               
               <!-- Modal Navigation -->

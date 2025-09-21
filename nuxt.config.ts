@@ -169,6 +169,19 @@ export default defineNuxtConfig({
       lg: 1024,
       xl: 1280,
       xxl: 1536
+    },
+    // Disable IPX processing for public folder images
+    ipx: {
+      modifiers: {}
+    },
+    // Exclude public folder from auto-processing
+    presets: {
+      default: {
+        modifiers: {
+          format: 'webp',
+          quality: 80
+        }
+      }
     }
   },
   ssr: false,

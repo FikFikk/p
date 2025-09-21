@@ -182,13 +182,13 @@ const projectsData = [
     type: 'Enterprise Web App',
     description: 'A robust web application for implementing and managing Quality Management Systems (SMM) and Anti-Bribery Management Systems (SMAP). This integrated platform helps organizations ensure compliance and drive operational excellence.',
     images: [
-      '/img/projects/simmap/admin-dashboard.webp',
-      '/img/projects/simmap/admin-project.webp',
-      '/img/projects/simmap/admin-smap.webp',
-      '/img/projects/simmap/admin-pelaksanaan.webp',
-      '/img/projects/simmap/admin-user.webp',
-      '/img/projects/simmap/admin-company.webp',
-      '/img/projects/simmap/admin-audit.webp'
+      '/p/img/projects/simmap/admin-dashboard.webp',
+      '/p/img/projects/simmap/admin-project.webp',
+      '/p/img/projects/simmap/admin-smap.webp',
+      '/p/img/projects/simmap/admin-pelaksanaan.webp',
+      '/p/img/projects/simmap/admin-user.webp',
+      '/p/img/projects/simmap/admin-company.webp',
+      '/p/img/projects/simmap/admin-audit.webp'
     ],
     features: [
       'Secure document control & lifecycle management',
@@ -207,13 +207,13 @@ const projectsData = [
     type: 'Property Management',
     description: 'A dedicated web application for efficient management of monthly hostel/boarding house operations. It features a public portal for property visibility and a dual-role system (Admin/Tenant) for streamlined operational control and convenient tenant self-service.',
     images: [
-      '/img/projects/kostash/landing.webp',
-      '/img/projects/kostash/admin-dashboard.webp',
-      '/img/projects/kostash/admin-meter.webp',
-      '/img/projects/kostash/admin-meter-gridview.webp',
-      '/img/projects/kostash/admin-gallery.webp',
-      '/img/projects/kostash/admin-transaction.webp',
-      '/img/projects/kostash/admin-report.webp'
+      '/p/img/projects/kostash/landing.webp',
+      '/p/img/projects/kostash/admin-dashboard.webp',
+      '/p/img/projects/kostash/admin-meter.webp',
+      '/p/img/projects/kostash/admin-meter-gridview.webp',
+      '/p/img/projects/kostash/admin-gallery.webp',
+      '/p/img/projects/kostash/admin-transaction.webp',
+      '/p/img/projects/kostash/admin-report.webp'
     ],
     features: [
       'Public-facing portal showcasing property details & amenities',
