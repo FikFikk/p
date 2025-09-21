@@ -1,11 +1,28 @@
 // ===== app.vue =====
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+  <div>
+    <!-- Loading Screen -->
+    <LoadingScreen v-if="isLoading" />
+    
+    <!-- Main App -->
+    <NuxtLayout v-else>
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
 </template>
 
 <script setup>
+import LoadingScreen from '~/components/LoadingScreen.vue'
+
+// Loading state
+const isLoading = ref(true)
+
+// Hide loading after 2-3 seconds or when app is ready
+onMounted(() => {
+  setTimeout(() => {
+    isLoading.value = false
+  }, 2500) // Adjust timing as needed
+})
 // Structured data for SEO
 useHead({
   script: [
