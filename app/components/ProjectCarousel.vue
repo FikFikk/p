@@ -32,6 +32,7 @@
           v-if="images.length > 1"
           @click.stop="prevImage"
           class="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-sky-600/80 hover:bg-sky-400/90 backdrop-blur-sm rounded-full text-white transition-all duration-200 hover:scale-110 hidden sm:block"
+          aria-label="Previous image"
         >
           <ChevronLeftIcon class="w-5 h-5 text-white drop-shadow-[0_0_6px_#38bdf8]" />
         </button>
@@ -39,6 +40,7 @@
           v-if="images.length > 1"
           @click.stop="nextImage"
           class="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-sky-600/80 hover:bg-sky-400/90 backdrop-blur-sm rounded-full text-white transition-all duration-200 hover:scale-110 hidden sm:block"
+          aria-label="Next image"
         >
           <ChevronRightIcon class="w-5 h-5 text-white drop-shadow-[0_0_6px_#38bdf8]" />
         </button>
@@ -47,6 +49,7 @@
           v-if="!isMobile"
           @click.stop="openModal"
           class="absolute top-4 right-4 p-3 bg-sky-600/80 hover:bg-sky-400/90 shadow-lg shadow-sky-400/40 border-2 border-white/60 rounded-full text-white transition-all duration-200 hover:scale-110 ring-2 ring-sky-400/40 z-20"
+          aria-label="Open image in fullscreen"
         >
           <ArrowsPointingOutIcon class="w-5 h-5" />
         </button>
@@ -58,13 +61,23 @@
           v-for="(image, index) in images"
           :key="index"
           @click="currentIndex = index"
-          class="w-2 h-2 rounded-full transition-all duration-200"
+          class="min-w-6 min-h-6 p-1 rounded-full transition-all duration-200 flex items-center justify-center"
           :class="[
             index === currentIndex 
-              ? 'bg-white w-8' 
+              ? 'bg-white/90' 
               : 'bg-white/50 hover:bg-white/75'
           ]"
-        />
+          :aria-label="`Go to image ${index + 1} of ${images.length}`"
+        >
+          <span 
+            class="block rounded-full transition-all duration-200"
+            :class="[
+              index === currentIndex 
+                ? 'bg-sky-600 w-4 h-1' 
+                : 'bg-white w-2 h-2'
+            ]"
+          ></span>
+        </button>
       </div>
     </div>
 
@@ -88,6 +101,7 @@
             <button
               @click="closeModal"
               class="absolute -top-12 right-0 p-2 text-white hover:text-gray-300 transition-colors"
+              aria-label="Close fullscreen image"
             >
               <XMarkIcon class="w-8 h-8" />
             </button>
@@ -106,6 +120,7 @@
                 v-if="images.length > 1"
                 @click.stop="prevModalImage"
                 class="absolute left-4 top-1/2 -translate-y-1/2 p-4 bg-black/30 hover:bg-black/50 backdrop-blur-sm rounded-full text-white transition-all duration-200"
+                aria-label="Previous image in fullscreen"
               >
                 <ChevronLeftIcon class="w-6 h-6" />
               </button>
@@ -114,6 +129,7 @@
                 v-if="images.length > 1"
                 @click.stop="nextModalImage"
                 class="absolute right-4 top-1/2 -translate-y-1/2 p-4 bg-black/30 hover:bg-black/50 backdrop-blur-sm rounded-full text-white transition-all duration-200"
+                aria-label="Next image in fullscreen"
               >
                 <ChevronRightIcon class="w-6 h-6" />
               </button>
@@ -125,13 +141,23 @@
                 v-for="(image, index) in images"
                 :key="index"
                 @click.stop="modalIndex = index"
-                class="w-3 h-3 rounded-full transition-all duration-200"
+                class="min-w-8 min-h-8 p-1 rounded-full transition-all duration-200 flex items-center justify-center"
                 :class="[
                   index === modalIndex 
-                    ? 'bg-white w-10' 
+                    ? 'bg-white/90' 
                     : 'bg-white/50 hover:bg-white/75'
                 ]"
-              />
+                :aria-label="`Go to image ${index + 1} of ${images.length} in fullscreen`"
+              >
+                <span 
+                  class="block rounded-full transition-all duration-200"
+                  :class="[
+                    index === modalIndex 
+                      ? 'bg-sky-600 w-6 h-1.5' 
+                      : 'bg-white w-3 h-3'
+                  ]"
+                ></span>
+              </button>
             </div>
           </div>
         </div>
