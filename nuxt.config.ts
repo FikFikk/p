@@ -51,6 +51,46 @@ export default defineNuxtConfig({
     'nuxt-security',
     '@nuxt/image'
   ],
+  security: {
+    // Untuk SSG karena kamu pakai GitHub Pages (nitro preset: github-pages)
+    ssg: {
+      meta: true,        // inject CSP via <meta http-equiv>
+      hashScripts: true, // buat hash otomatis untuk inline + external script
+      hashStyles: false
+    },
+    sri: true, // tambahkan integrity otomatis
+    headers: {
+      contentSecurityPolicy: {
+        'default-src': ["'self'"],
+        'base-uri': ["'none'"],
+        'object-src': ["'none'"],
+        'script-src': [
+          "'self'",
+          "https:",             // allow https scripts
+          "'unsafe-inline'",    // fallback, kalau masih ada inline
+          "'strict-dynamic'",   // aktifkan strict CSP
+          "https://static.cloudflareinsights.com" // <- tambah Cloudflare Insights
+        ],
+        'style-src': [
+          "'self'",
+          "https:",
+          "'unsafe-inline'"
+        ],
+        'img-src': [
+          "'self'",
+          "data:",
+          "https://images.unsplash.com"
+        ],
+        'font-src': [
+          "'self'",
+          "https:",
+          "data:"
+        ],
+        'form-action': ["'self'"],
+        'upgrade-insecure-requests': true
+      }
+    }
+  },
   image: {
     domains: ['images.unsplash.com'],
     providers: {
