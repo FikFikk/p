@@ -39,7 +39,7 @@ export default defineNuxtConfig({
         { name: 'theme-color', content: '#0ea5e9' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/p/favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'canonical', href: 'https://fikfikk.github.io/p/' },
         { rel: 'preconnect', href: 'https://images.unsplash.com' },
         { rel: 'dns-prefetch', href: 'https://images.unsplash.com' },
@@ -60,7 +60,7 @@ export default defineNuxtConfig({
         // { rel: 'preload', as: 'image', href: '/img/projects/kostash/admin-transaction.webp' },
         // { rel: 'preload', as: 'image', href: '/img/projects/kostash/admin-report.webp' },
         // Preload favicon (opsional)
-        // { rel: 'preload', as: 'image', href: '/p/favicon.ico' }
+        // { rel: 'preload', as: 'image', href: '/favicon.ico' }
       ],
       // script: [
       //   {
