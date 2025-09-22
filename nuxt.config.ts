@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   app: {
-    baseURL: '/p/',
+    baseURL: '/',
     head: {
       htmlAttrs: {
         lang: 'id'
