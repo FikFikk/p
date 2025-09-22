@@ -5,80 +5,40 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'id'
       },
-      title: 'Mochammad Fikri Dwi Fardian - Fullstack Developer & CNC Programming Expert',
-      charset: 'utf-8',
+      title: 'Mochammad Fikri Dwi Fardian - Fullstack Developer & CNC Programming Expert | FikFikk',
       viewport: 'width=device-width, initial-scale=1',
       meta: [
-        { 
-          name: 'description', 
-          content: 'Portfolio Mochammad Fikri Dwi Fardian - Fullstack Developer dengan keahlian CNC Programming. Berpengalaman dalam JavaScript, Vue.js, React.js, Laravel, dan teknologi modern lainnya.' 
+        {
+          name: 'description',
+          content: 'FikFikk | Portfolio Mochammad Fikri Dwi Fardian - Fullstack Developer & CNC Programming Expert. Berpengalaman JavaScript, Vue.js, React.js, Laravel, CNC Programming, Gresik, Sidoarjo, Surabaya, Indonesia.'
         },
         { name: 'author', content: 'Mochammad Fikri Dwi Fardian' },
-        { name: 'keywords', content: 'Fullstack Developer, CNC Programming, JavaScript, Vue.js, React.js, Laravel, Portfolio, Bandung' },
-        
+        { name: 'keywords', content: 'FikFikk, Fikri, Mochammad Fikri Dwi Fardian, Fullstack Developer, CNC Programming, JavaScript, Vue.js, React.js, Laravel, Portfolio, Gresik, Sidoarjo, Surabaya, Indonesia.' },
         // Open Graph
-        { property: 'og:title', content: 'Mochammad Fikri Dwi Fardian - Fullstack Developer & CNC Programming Expert' },
-        { 
-          property: 'og:description', 
-          content: 'Portfolio Mochammad Fikri Dwi Fardian - Fullstack Developer dengan keahlian CNC Programming. Berpengalaman dalam JavaScript, Vue.js, React.js, Laravel, dan teknologi modern lainnya.' 
-        },
+        { property: 'og:title', content: 'Mochammad Fikri Dwi Fardian - Fullstack Developer & CNC Programming Expert | FikFikk' },
+        { property: 'og:site_name', content: 'FikFikk' },
+        { property: 'og:description', content: 'FikFikk | Portfolio Mochammad Fikri Dwi Fardian - Fullstack Developer & CNC Programming Expert. Berpengalaman JavaScript, Vue.js, React.js, Laravel, CNC Programming, Gresik, Sidoarjo, Surabaya, Indonesia.' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'id_ID' },
-        { property: 'og:url', content: 'https://fikfikk.github.io/p/' },
-        
+        { property: 'og:url', content: 'https://fikfikk.my.id/' },
+        { property: 'og:image', content: 'https://fikfikk.my.id/favicon.ico' },
         // Twitter Card
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'Mochammad Fikri Dwi Fardian - Fullstack Developer & CNC Programming Expert' },
-        { 
-          name: 'twitter:description', 
-          content: 'Portfolio Mochammad Fikri Dwi Fardian - Fullstack Developer dengan keahlian CNC Programming. Berpengalaman dalam JavaScript, Vue.js, React.js, Laravel, dan teknologi modern lainnya.' 
-        },
-        
+        { name: 'twitter:title', content: 'Mochammad Fikri Dwi Fardian - Fullstack Developer & CNC Programming Expert | FikFikk' },
+        { name: 'twitter:description', content: 'FikFikk | Portfolio Mochammad Fikri Dwi Fardian - Fullstack Developer & CNC Programming Expert. Berpengalaman JavaScript, Vue.js, React.js, Laravel, CNC Programming, Gresik, Sidoarjo, Surabaya, Indonesia.' },
+        { name: 'twitter:image', content: 'https://fikfikk.my.id/favicon.ico' },
         // Additional SEO
         { name: 'robots', content: 'index, follow' },
         { name: 'theme-color', content: '#0ea5e9' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'canonical', href: 'https://fikfikk.github.io/p/' },
         { rel: 'preconnect', href: 'https://images.unsplash.com' },
         { rel: 'dns-prefetch', href: 'https://images.unsplash.com' },
-        // Preload all main project images for optimal LCP and gallery experience
-        // { rel: 'preload', as: 'image', href: '/img/projects/simmap/admin-dashboard.webp' },
-        // { rel: 'preload', as: 'image', href: '/img/projects/simmap/admin-project.webp' },
-        // { rel: 'preload', as: 'image', href: '/img/projects/simmap/admin-smap.webp' },
-        // { rel: 'preload', as: 'image', href: '/img/projects/simmap/admin-pelaksanaan.webp' },
-        // { rel: 'preload', as: 'image', href: '/img/projects/simmap/admin-user.webp' },
-        // { rel: 'preload', as: 'image', href: '/img/projects/simmap/admin-company.webp' },
-        // { rel: 'preload', as: 'image', href: '/img/projects/simmap/admin-audit.webp' },
-        // Kostash project images
-        // { rel: 'preload', as: 'image', href: '/img/projects/kostash/landing.webp' },
-        // { rel: 'preload', as: 'image', href: '/img/projects/kostash/admin-dashboard.webp' },
-        // { rel: 'preload', as: 'image', href: '/img/projects/kostash/admin-gallery.webp' },
-        // { rel: 'preload', as: 'image', href: '/img/projects/kostash/admin-meter.webp' },
-        // { rel: 'preload', as: 'image', href: '/img/projects/kostash/admin-meter-gridview.webp' },
-        // { rel: 'preload', as: 'image', href: '/img/projects/kostash/admin-transaction.webp' },
-        // { rel: 'preload', as: 'image', href: '/img/projects/kostash/admin-report.webp' },
-        // Preload favicon (opsional)
-        // { rel: 'preload', as: 'image', href: '/favicon.ico' }
+          { rel: 'canonical', href: 'https://fikfikk.my.id/' },
+          { rel: 'icon', type: 'image/png', href: '/favicon.ico' },
+          { rel: 'apple-touch-icon', href: '/favicon.ico' },
       ],
-      // script: [
-      //   {
-      //     innerHTML: `
-      //       (function() {
-      //         const theme = localStorage.getItem('theme')
-      //         if (theme === 'dark') {
-      //           document.documentElement.classList.add('dark')
-      //         } else if (theme === 'light') {
-      //           document.documentElement.classList.remove('dark')
-      //         } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      //           document.documentElement.classList.add('dark')
-      //         }
-      //       })()
-      //     `,
-      //     type: 'text/javascript'
-      //   }
-      // ]
     }
   },
   components: [
@@ -91,67 +51,6 @@ export default defineNuxtConfig({
     'nuxt-security',
     '@nuxt/image'
   ],
-  // security: {
-  //   headers: {
-  //     contentSecurityPolicy: {
-  //       'default-src': ["'self'"],
-  //       'img-src': ["'self'", 'https:', 'data:'],
-  //       'script-src': ["'self'"],
-  //       'style-src': ["'self'", "'unsafe-inline'"],
-  //       'font-src': ["'self'", 'https:', 'data:'],
-  //       'connect-src': ["'self'", 'https://images.unsplash.com'],
-  //       'frame-src': ["'none'"],
-  //       'object-src': ["'none'"],
-  //       'base-uri': ["'self'"],
-  //       'form-action': ["'self'"]
-  //     },
-  //     permissionsPolicy: {
-  //       camera: [],
-  //       microphone: [],
-  //       geolocation: [],
-  //       fullscreen: ["*"]
-  //     },
-  //     crossOriginEmbedderPolicy: 'require-corp',
-  //     crossOriginOpenerPolicy: 'same-origin',
-  //     crossOriginResourcePolicy: 'same-origin',
-  //     originAgentCluster: '?1',
-  //     referrerPolicy: 'strict-origin-when-cross-origin',
-  //     strictTransportSecurity: {
-  //       maxAge: 63072000,
-  //       includeSubdomains: true,
-  //       preload: true
-  //     },
-  //     xContentTypeOptions: 'nosniff',
-  //     xDNSPrefetchControl: 'off',
-  //     xDownloadOptions: 'noopen',
-  //     xFrameOptions: 'SAMEORIGIN',
-  //     xPermittedCrossDomainPolicies: 'none',
-  //     xXSSProtection: '1; mode=block'
-  //   },
-  //   rateLimiter: {
-  //     tokensPerInterval: 150,
-  //     interval: 'minute'
-  //   },
-  //   requestSizeLimiter: {
-  //     maxRequestSizeInBytes: 1024000, // 1MB
-  //     maxUploadFileRequestInBytes: 10485760 // 10MB
-  //   },
-  //   xssValidator: {},
-  //   corsHandler: {
-  //     origin: '*',
-  //     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  //     allowHeaders: ['Content-Type', 'Authorization'],
-  //     exposeHeaders: [],
-  //     credentials: false,
-  //     maxAge: '86400'
-  //   },
-  //   allowedMethodsRestricter: {
-  //     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
-  //   },
-  //   basicAuth: false,
-  //   csrf: false,
-  //   hidePoweredBy: true
-  // },
   image: {
     domains: ['images.unsplash.com'],
     providers: {
