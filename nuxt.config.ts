@@ -68,7 +68,7 @@ export default defineNuxtConfig({
           "'self'",
           "https:",             // allow https scripts
           "'unsafe-inline'",    // fallback, kalau masih ada inline
-          "'strict-dynamic'",   // aktifkan strict CSP
+          // "'strict-dynamic'",   // aktifkan strict CSP
           "https://static.cloudflareinsights.com" // <- tambah Cloudflare Insights
         ],
         'style-src': [
