@@ -252,30 +252,25 @@ const socialLinks = [
 // Form submission handler
 const handleSubmit = async () => {
   loading.value = true
-  
+  showSuccess.value = false
   try {
-    // Simulate API call - replace with actual form submission
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    // Here you would typically send the data to your backend
-    console.log('Form submitted:', form)
-    
-    // Reset form
-    Object.keys(form).forEach(key => form[key] = '')
-    
-    // Show success message
-    showSuccess.value = true
-    
-    // Hide success message after 5 seconds
-    setTimeout(() => {
-      showSuccess.value = false
-    }, 5000)
-    
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form)
+    });
+    const data = await res.json();
+    if (data.status === 200) {
+      Object.keys(form).forEach(key => form[key] = '');
+      showSuccess.value = true;
+      setTimeout(() => { showSuccess.value = false }, 5000);
+    } else {
+      alert(data.message || 'Failed to send message.');
+    }
   } catch (error) {
-    console.error('Error submitting form:', error)
-    // Handle error - show error message to user
+    alert('Failed to send message.');
   } finally {
-    loading.value = false
+    loading.value = false;
   }
 }
 
