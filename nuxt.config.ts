@@ -5,73 +5,39 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'id'
       },
-      title: 'FikFikk - Mochammad Fikri Dwi Fardian | Fullstack Developer & CNC Programming Expert Indonesia',
-      charset: 'utf-8',
+      title: 'Mochammad Fikri Dwi Fardian - Fullstack Developer & CNC Programming Expert | FikFikk',
       viewport: 'width=device-width, initial-scale=1',
       meta: [
         {
           name: 'description',
-          content: 'FikFikk - Mochammad Fikri Dwi Fardian, Fullstack Developer & CNC Programming Expert terbaik Indonesia. Spesialis JavaScript, Vue.js, React.js, Laravel, PHP. Portfolio Fikri Gresik, Sidoarjo, Surabaya.'
+          content: 'FikFikk | Portfolio Mochammad Fikri Dwi Fardian - Fullstack Developer & CNC Programming Expert. Berpengalaman JavaScript, Vue.js, React.js, Laravel, CNC Programming, Gresik, Sidoarjo, Surabaya, Indonesia.'
         },
-        { name: 'author', content: 'Mochammad Fikri Dwi Fardian (FikFikk)' },
-        { name: 'keywords', content: 'FikFikk, Fikri, Mochammad Fikri, Fikri Dwi Fardian, Mochammad Fikri Dwi Fardian, Fullstack Developer Indonesia, CNC Programming Expert, JavaScript Developer, Vue.js Developer, React.js Developer, Laravel Developer, PHP Developer, Web Developer Gresik, Web Developer Sidoarjo, Web Developer Surabaya, Portfolio Fikri, Developer Indonesia Terbaik' },
-        
-        // Additional SEO Meta Tags
-        { name: 'geo.region', content: 'ID-JI' },
-        { name: 'geo.placename', content: 'Gresik, Jawa Timur' },
-        { name: 'geo.position', content: '-7.1559;112.6536' },
-        { name: 'ICBM', content: '-7.1559, 112.6536' },
-        { name: 'language', content: 'Indonesian' },
-        { name: 'revisit-after', content: '7 days' },
-        { name: 'distribution', content: 'global' },
-        { name: 'rating', content: 'general' },
+        { name: 'author', content: 'Mochammad Fikri Dwi Fardian' },
+        { name: 'keywords', content: 'FikFikk, Fikri, Mochammad Fikri Dwi Fardian, Fullstack Developer, CNC Programming, JavaScript, Vue.js, React.js, Laravel, Portfolio, Gresik, Sidoarjo, Surabaya, Indonesia.' },
         // Open Graph
-        { property: 'og:title', content: 'FikFikk - Mochammad Fikri Dwi Fardian | Fullstack Developer & CNC Programming Expert Indonesia' },
-        { property: 'og:site_name', content: 'FikFikk Portfolio' },
-        { property: 'og:description', content: 'FikFikk - Mochammad Fikri Dwi Fardian, Fullstack Developer & CNC Programming Expert terbaik Indonesia. Spesialis JavaScript, Vue.js, React.js, Laravel, PHP. Portfolio Fikri Gresik, Sidoarjo, Surabaya.' },
-        { property: 'og:type', content: 'profile' },
+        { property: 'og:title', content: 'Mochammad Fikri Dwi Fardian - Fullstack Developer & CNC Programming Expert | FikFikk' },
+        { property: 'og:site_name', content: 'FikFikk' },
+        { property: 'og:description', content: 'FikFikk | Portfolio Mochammad Fikri Dwi Fardian - Fullstack Developer & CNC Programming Expert. Berpengalaman JavaScript, Vue.js, React.js, Laravel, CNC Programming, Gresik, Sidoarjo, Surabaya, Indonesia.' },
+        { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'id_ID' },
         { property: 'og:url', content: 'https://fikfikk.my.id/' },
-        { property: 'og:image', content: 'https://fikfikk.my.id/og-image.png' },
-        { property: 'og:image:width', content: '1200' },
-        { property: 'og:image:height', content: '630' },
-        { property: 'og:image:alt', content: 'FikFikk - Mochammad Fikri Dwi Fardian Portfolio' },
-        
-        // Profile specific (for personal portfolio)
-        { property: 'profile:first_name', content: 'Mochammad Fikri' },
-        { property: 'profile:last_name', content: 'Dwi Fardian' },
-        { property: 'profile:username', content: 'FikFikk' },
-        
+        { property: 'og:image', content: 'https://fikfikk.my.id/favicon.ico' },
         // Twitter Card
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:site', content: '@MochamadFardian' },
-        { name: 'twitter:creator', content: '@MochamadFardian' },
-        { name: 'twitter:title', content: 'FikFikk - Mochammad Fikri Dwi Fardian | Fullstack Developer Indonesia' },
-        { name: 'twitter:description', content: 'FikFikk - Mochammad Fikri Dwi Fardian, Fullstack Developer & CNC Programming Expert terbaik Indonesia. Spesialis JavaScript, Vue.js, React.js, Laravel.' },
-        { name: 'twitter:image', content: 'https://fikfikk.my.id/og-image.png' },
+        { name: 'twitter:title', content: 'Mochammad Fikri Dwi Fardian - Fullstack Developer & CNC Programming Expert | FikFikk' },
+        { name: 'twitter:description', content: 'FikFikk | Portfolio Mochammad Fikri Dwi Fardian - Fullstack Developer & CNC Programming Expert. Berpengalaman JavaScript, Vue.js, React.js, Laravel, CNC Programming, Gresik, Sidoarjo, Surabaya, Indonesia.' },
+        { name: 'twitter:image', content: 'https://fikfikk.my.id/favicon.ico' },
         // Additional SEO
-        { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
-        { name: 'googlebot', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
-        { name: 'bingbot', content: 'index, follow' },
-        { name: 'theme-color', content: '#0ea5e9' },
-        { name: 'msapplication-TileColor', content: '#0ea5e9' },
-        { name: 'application-name', content: 'FikFikk Portfolio' },
-        { name: 'apple-mobile-web-app-title', content: 'FikFikk' },
-        { name: 'apple-mobile-web-app-capable', content: 'yes' },
-        { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
+        { name: 'robots', content: 'index, follow' },
+        { name: 'theme-color', content: '#0ea5e9' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon.ico' },
-        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon.ico' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon.ico' },
-        { rel: 'mask-icon', href: '/favicon.ico', color: '#0ea5e9' },
-        { rel: 'canonical', href: 'https://fikfikk.my.id/' },
-        { rel: 'sitemap', type: 'application/xml', href: '/sitemap.xml' },
         { rel: 'preconnect', href: 'https://images.unsplash.com' },
         { rel: 'dns-prefetch', href: 'https://images.unsplash.com' },
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' },
+          { rel: 'canonical', href: 'https://fikfikk.my.id/' },
+          { rel: 'icon', type: 'image/png', href: '/favicon.ico' },
+          { rel: 'apple-touch-icon', href: '/favicon.ico' },
       ],
     }
   },
