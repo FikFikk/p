@@ -27,11 +27,12 @@ export default defineEventHandler(async (event) => {
 
   try {
     await transporter.sendMail({
-      from: 'fikrigtt14@gmail.com',
+      from: '"Contact Form FikFikk" <fikrigtt14@gmail.com>',
       to: 'fikri225456@gmail.com',
-      subject: `[Contact Form] ${subject}`,
+      subject: `[FikFikk Portfolio] ${subject}`,
       text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`,
       html: contactEmailTemplate({ name, email, subject, message }),
+      replyTo: email, // Agar bisa langsung reply ke pengirim
     });
     return { status: 200, message: 'Message sent successfully!' };
   } catch (error) {
