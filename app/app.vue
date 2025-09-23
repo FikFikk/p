@@ -17,11 +17,23 @@ import LoadingScreen from '~/components/LoadingScreen.vue'
 // Loading state
 const isLoading = ref(true)
 
-// Hide loading after 2-3 seconds or when app is ready
+// Optimized loading with performance considerations
 onMounted(() => {
-  setTimeout(() => {
+  // Use requestIdleCallback for better performance
+  const hideLoading = () => {
     isLoading.value = false
-  }, 2500) // Adjust timing as needed
+  }
+
+  // Check if requestIdleCallback is supported
+  if (window.requestIdleCallback) {
+    requestIdleCallback(hideLoading, { timeout: 2000 })
+  } else {
+    // Fallback for browsers without requestIdleCallback
+    setTimeout(hideLoading, 1500) // Reduced time for better UX
+  }
+  
+  // Also hide loading when all resources are loaded
+  window.addEventListener('load', hideLoading, { once: true })
 })
 // Structured data for SEO
 useHead({

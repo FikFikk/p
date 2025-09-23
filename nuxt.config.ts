@@ -59,6 +59,8 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-title', content: 'FikFikk' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
+        { name: 'format-detection', content: 'telephone=no' },
+        { name: 'mobile-web-app-capable', content: 'yes' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -68,6 +70,7 @@ export default defineNuxtConfig({
         { rel: 'mask-icon', href: '/favicon.ico', color: '#0ea5e9' },
         { rel: 'canonical', href: 'https://fikfikk.my.id/' },
         { rel: 'sitemap', type: 'application/xml', href: '/sitemap.xml' },
+        { rel: 'manifest', href: '/manifest.json' },
         { rel: 'preconnect', href: 'https://images.unsplash.com' },
         { rel: 'dns-prefetch', href: 'https://images.unsplash.com' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -133,7 +136,7 @@ export default defineNuxtConfig({
       }
     },
     formats: ['webp', 'avif', 'jpg'],
-    quality: 80,
+    quality: 85, // Slightly higher quality for better visual experience
     densities: [1, 2],
     screens: {
       xs: 320,
@@ -143,16 +146,31 @@ export default defineNuxtConfig({
       xl: 1280,
       xxl: 1536
     },
+    // Performance optimizations
+    preload: false, // Disable automatic preloading
+    loading: 'lazy', // Enable lazy loading by default
     // Disable IPX processing for public folder images
     ipx: {
       modifiers: {}
     },
-    // Exclude public folder from auto-processing
+    // Optimized presets for better compression
     presets: {
       default: {
         modifiers: {
           format: 'webp',
-          quality: 80
+          quality: 85,
+          progressive: true, // Enable progressive JPEG
+          optimizeCss: true,
+          mozjpeg: { progressive: true }
+        }
+      },
+      avatar: {
+        modifiers: {
+          format: 'webp',
+          quality: 90,
+          width: 200,
+          height: 200,
+          fit: 'cover'
         }
       }
     }
@@ -160,18 +178,96 @@ export default defineNuxtConfig({
   ssr: false,
   nitro: {
     preset: 'github-pages',
+    prerender: {
+      routes: ['/'], // Pre-render home page for better performance
+    },
     routeRules: {
-      '/img/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
-      '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } }
-    }
+      '/': { 
+        prerender: true,
+        headers: { 
+          'cache-control': 'public, max-age=3600, s-maxage=3600' 
+        }
+      },
+      '/api/**': { 
+        cors: true,
+        headers: { 
+          'cache-control': 'no-cache' 
+        }
+      },
+      '/img/**': { 
+        headers: { 
+          'cache-control': 'public, max-age=31536000, immutable',
+          'vary': 'Accept-Encoding'
+        } 
+      },
+      '/_nuxt/**': { 
+        headers: { 
+          'cache-control': 'public, max-age=31536000, immutable',
+          'vary': 'Accept-Encoding'
+        } 
+      },
+      '/favicon.ico': { 
+        headers: { 
+          'cache-control': 'public, max-age=86400' 
+        } 
+      }
+    },
+    experimental: {
+      wasm: false // Disable WASM for smaller bundle
+    },
+    minify: true,
+    sourceMap: false // Disable source maps in production
   },
   compatibilityDate: "2025-09-17",
-  devtools: { enabled: true },
+  devtools: { 
+    enabled: false // Disabled for production performance
+  },
   css: ['./app/assets/css/main.css'],
+  
+  // Performance optimizations
+  experimental: {
+    payloadExtraction: false, // Disable payload extraction for better performance
+    viewTransition: true // Enable view transitions for better UX
+  },
+  
+  // Build optimizations for Lighthouse scores
+  vite: {
+    build: {
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: ['vue', '@headlessui/vue'],
+            icons: ['@heroicons/vue/24/outline'],
+          },
+        },
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "sass:math";`
+        }
+      }
+    },
+    optimizeDeps: {
+      include: ['vue', '@headlessui/vue', '@heroicons/vue/24/outline']
+    }
+  },
+  
   postcss: {
     plugins: {
       '@tailwindcss/postcss': {},
       autoprefixer: {},
+      cssnano: {
+        preset: ['default', {
+          discardComments: {
+            removeAll: true,
+          },
+          normalizeWhitespace: true,
+          minifySelectors: true
+        }]
+      }
     }
   }
 });

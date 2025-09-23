@@ -124,6 +124,31 @@
                 </div>
               </div>
             </Transition>
+
+            <!-- Error Message -->
+            <Transition
+              enter-active-class="transition duration-300 ease-out"
+              enter-from-class="opacity-0 transform scale-95 translate-y-2"
+              enter-to-class="opacity-100 transform scale-100 translate-y-0"
+              leave-active-class="transition duration-200 ease-in"
+              leave-from-class="opacity-100 transform scale-100 translate-y-0"
+              leave-to-class="opacity-0 transform scale-95 translate-y-2"
+            >
+              <div v-if="showError" class="mt-6 p-4 bg-red-100/80 dark:bg-red-900/30 border border-red-200/50 dark:border-red-700/50 rounded-2xl backdrop-blur-sm">
+                <div class="flex items-start">
+                  <ExclamationTriangleIcon class="h-6 w-6 text-red-600 dark:text-red-400 mr-3 flex-shrink-0 mt-0.5" />
+                  <div class="flex-1">
+                    <p class="text-red-700 dark:text-red-300 font-medium">
+                      {{ errorMessage }}
+                    </p>
+                    <p class="text-red-600 dark:text-red-400 text-sm mt-1">
+                      You can also reach me directly at 
+                      <a href="mailto:fikri225456@gmail.com" class="underline hover:no-underline">fikri225456@gmail.com</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Transition>
           </div>
         </div>
 
@@ -210,6 +235,7 @@ import {
   PaperAirplaneIcon,
   ArrowPathIcon,
   CheckCircleIcon,
+  ExclamationTriangleIcon,
   EnvelopeIcon,
   PhoneIcon,
   MapPinIcon
@@ -249,28 +275,62 @@ const socialLinks = [
   }
 ]
 
-// Form submission handler
+// Enhanced form submission with better error handling and UX
+const showError = ref(false)
+const errorMessage = ref('')
+
 const handleSubmit = async () => {
+  // Reset states
   loading.value = true
   showSuccess.value = false
+  showError.value = false
+  
   try {
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form)
-    });
-    const data = await res.json();
-    if (data.status === 200) {
-      Object.keys(form).forEach(key => form[key] = '');
-      showSuccess.value = true;
-      setTimeout(() => { showSuccess.value = false }, 5000);
-    } else {
-      alert(data.message || 'Failed to send message.');
+    // Client-side validation
+    if (!isFormValid.value) {
+      throw new Error('Please fill in all required fields.')
     }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(form.email)) {
+      throw new Error('Please enter a valid email address.')
+    }
+
+    // Submit to API
+    const response = await $fetch('/api/contact', {
+      method: 'POST',
+      body: form,
+      timeout: 10000, // 10 second timeout
+    })
+
+    if (response.status === 200) {
+      // Success - reset form and show success message
+      Object.keys(form).forEach(key => form[key] = '')
+      showSuccess.value = true
+      
+      // Auto hide success message after 5 seconds
+      setTimeout(() => { 
+        showSuccess.value = false 
+      }, 5000)
+    } else {
+      throw new Error(response.message || 'Failed to send message')
+    }
+
   } catch (error) {
-    alert('Failed to send message.');
+    // Enhanced error handling
+    console.error('Contact form error:', error)
+    
+    errorMessage.value = error.message || 'Failed to send message. Please try again or contact me directly.'
+    showError.value = true
+    
+    // Auto hide error after 5 seconds
+    setTimeout(() => { 
+      showError.value = false 
+    }, 5000)
+    
   } finally {
-    loading.value = false;
+    loading.value = false
   }
 }
 

@@ -1,0 +1,21 @@
+{
+  "name": "FikFikk - Mochammad Fikri Dwi Fardian Portfolio",
+  "short_name": "FikFikk",
+  "description": "Fullstack Developer & CNC Programming Expert from Indonesia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0ea5e9",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "id",
+  "categories": ["business", "productivity", "developer"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48 32x32 16x16",
+      "type": "image/x-icon",
+      "purpose": "any maskable"
+    }
+  ]
+}
