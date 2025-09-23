@@ -1,2 +1,15 @@
-User-Agent: *
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://fikfikk.my.id/sitemap.xml
+
+# Block specific crawlers if needed
+# User-agent: BadBot
+# Disallow: /
+
+# Allow all content for SEO
 Disallow:
+
+# Crawl-delay for polite crawlers (optional)
+# Crawl-delay: 1

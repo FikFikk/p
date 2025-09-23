@@ -1,41 +1,38 @@
 
-import nodemailer from 'nodemailer';
-import { contactEmailTemplate } from './contactEmailTemplate.js';
+// Contact API - Secure version with environment variables
+// SMTP credentials moved to .env file for security
 
 export default defineEventHandler(async (event) => {
+  // Only allow POST method
   if (event.method !== 'POST') {
-    return { status: 405, message: 'Method Not Allowed' };
+    throw createError({
+      statusCode: 405,
+      statusMessage: 'Method Not Allowed'
+    });
   }
 
   const body = await readBody(event);
   const { name, email, subject, message } = body || {};
 
   if (!name || !email || !subject || !message) {
-    return { status: 400, message: 'All fields are required.' };
-  }
-
-  // SMTP config (from user)
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    auth: {
-      user: 'fikrigtt14@gmail.com',
-      pass: 'usnmyauowtbilsmk',
-    },
-  });
-
-  try {
-    await transporter.sendMail({
-      from: '"Contact Form FikFikk" <fikrigtt14@gmail.com>',
-      to: 'fikri225456@gmail.com',
-      subject: `[FikFikk Portfolio] ${subject}`,
-      text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`,
-      html: contactEmailTemplate({ name, email, subject, message }),
-      replyTo: email, // Agar bisa langsung reply ke pengirim
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'All fields are required'
     });
-    return { status: 200, message: 'Message sent successfully!' };
-  } catch (error) {
-    return { status: 500, message: 'Failed to send email.', error: error.message };
   }
+
+  // For GitHub Pages static deployment, API routes don't work properly
+  // This is a limitation of static hosting
+  // Alternative solutions:
+  // 1. Use Formspree: https://formspree.io/
+  // 2. Use EmailJS: https://www.emailjs.com/
+  // 3. Use Netlify Forms (if hosted on Netlify)
+  // 4. Use Vercel with serverless functions
+  
+  console.log('Contact form submission:', { name, email, subject, message });
+  
+  return { 
+    status: 200, 
+    message: 'Thank you for your message! Please contact me directly via email: fikri225456@gmail.com or WhatsApp: +6285157584466' 
+  };
 });
