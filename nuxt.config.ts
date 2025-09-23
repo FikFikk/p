@@ -66,10 +66,10 @@ export default defineNuxtConfig({
         'object-src': ["'none'"],
         'script-src': [
           "'self'",
-          "https:",             // allow https scripts
-          "'unsafe-inline'",    // fallback, kalau masih ada inline
-          // "'strict-dynamic'",   // aktifkan strict CSP
-          "https://static.cloudflareinsights.com" // <- tambah Cloudflare Insights
+          "https:",
+          "'unsafe-inline'",
+          // "'strict-dynamic'",
+          "https://static.cloudflareinsights.com"
         ],
         'style-src': [
           "'self'",
@@ -87,6 +87,10 @@ export default defineNuxtConfig({
           "data:"
         ],
         'form-action': ["'self'"],
+        'connect-src': [
+          "'self'",
+          "https://formspree.io"
+        ],
         'upgrade-insecure-requests': true
       }
     }

@@ -275,60 +275,49 @@ const socialLinks = [
   }
 ]
 
-// Enhanced form submission with better error handling and UX
+// Enhanced form submission: direct to Formspree for static hosting
 const showError = ref(false)
 const errorMessage = ref('')
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xqaykppa'
 
 const handleSubmit = async () => {
-  // Reset states
   loading.value = true
   showSuccess.value = false
   showError.value = false
-  
   try {
     // Client-side validation
-    if (!isFormValid.value) {
-      throw new Error('Please fill in all required fields.')
-    }
-
-    // Email validation
+    if (!isFormValid.value) throw new Error('Please fill in all required fields.')
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(form.email)) {
-      throw new Error('Please enter a valid email address.')
+    if (!emailRegex.test(form.email)) throw new Error('Please enter a valid email address.')
+
+    // Prepare data for Formspree
+    const formData = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      subject: form.subject.trim(),
+      message: form.message.trim(),
+      _subject: `[FikFikk Portfolio] ${form.subject.trim()}`,
+      _replyto: form.email.trim(),
     }
 
-    // Submit to API
-    const response = await $fetch('/api/contact', {
+    // Send to Formspree
+    const res = await fetch(FORMSPREE_ENDPOINT, {
       method: 'POST',
-      body: form,
-      timeout: 10000, // 10 second timeout
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(formData)
     })
-
-    if (response.status === 200) {
-      // Success - reset form and show success message
+    const data = await res.json().catch(() => ({}))
+    if (res.ok) {
       Object.keys(form).forEach(key => form[key] = '')
       showSuccess.value = true
-      
-      // Auto hide success message after 5 seconds
-      setTimeout(() => { 
-        showSuccess.value = false 
-      }, 5000)
+      setTimeout(() => { showSuccess.value = false }, 5000)
     } else {
-      throw new Error(response.message || 'Failed to send message')
+      throw new Error(data.error || 'Failed to send message')
     }
-
   } catch (error) {
-    // Enhanced error handling
-    console.error('Contact form error:', error)
-    
     errorMessage.value = error.message || 'Failed to send message. Please try again or contact me directly.'
     showError.value = true
-    
-    // Auto hide error after 5 seconds
-    setTimeout(() => { 
-      showError.value = false 
-    }, 5000)
-    
+    setTimeout(() => { showError.value = false }, 5000)
   } finally {
     loading.value = false
   }
