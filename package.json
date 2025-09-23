@@ -1,38 +1,13 @@
 {
-  "name": "fikfikk-portfolio",
-  "version": "1.0.0",
-  "description": "FikFikk - Mochammad Fikri Dwi Fardian Portfolio Website",
-  "author": "Mochammad Fikri Dwi Fardian <fikri225456@gmail.com>",
-  "homepage": "https://fikfikk.my.id",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/FikFikk/p.git"
-  },
-  "keywords": [
-    "portfolio",
-    "fullstack-developer",
-    "cnc-programming",
-    "javascript",
-    "vue",
-    "nuxt",
-    "indonesia"
-  ],
+  "name": "nuxt-app",
   "type": "module",
   "private": true,
-  "engines": {
-    "node": ">=18.0.0",
-    "bun": ">=1.0.0"
-  },
   "scripts": {
-    "build": "nuxt build --preset=github-pages",
-    "dev": "nuxt dev --host",
-    "generate": "nuxt generate --preset=github-pages",
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "analyze": "nuxt analyze",
-    "cleanup": "nuxt cleanup",
-    "deploy": "bun run generate && gh-pages -d .output/public",
-    "lighthouse": "lhci autorun"
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.23",
@@ -49,9 +24,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.13",
-    "@types/node": "^24.5.2",
     "autoprefixer": "^10.4.21",
-    "cssnano": "^7.1.1",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.13"
   }
