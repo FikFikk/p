@@ -59,13 +59,13 @@
             <div class="space-y-3">
               <h4 class="font-semibold text-gray-900 dark:text-white">Frontend</h4>
               <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 rounded-full text-sm font-medium hover:bg-sky-200 dark:hover:bg-sky-800/50 hover:scale-110 transition-all duration-300 cursor-default hover-lift">
+                <span class="px-3 py-1 bg-white dark:bg-gray-900 text-sky-900 dark:text-sky-100 rounded-full text-sm font-medium hover:bg-sky-200 dark:hover:bg-sky-800/50 hover:scale-110 transition-all duration-300 cursor-default hover-lift">
                   Vue.js
                 </span>
-                <span class="px-3 py-1 bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 rounded-full text-sm font-medium hover:bg-sky-200 dark:hover:bg-sky-800/50 hover:scale-110 transition-all duration-300 cursor-default hover-lift">
+                <span class="px-3 py-1 bg-white dark:bg-gray-900 text-sky-900 dark:text-sky-100 rounded-full text-sm font-medium hover:bg-sky-200 dark:hover:bg-sky-800/80 hover:scale-110 transition-all duration-300 cursor-default hover-lift">
                   Nuxt
                 </span>
-                <span class="px-3 py-1 bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 rounded-full text-sm font-medium hover:bg-sky-200 dark:hover:bg-sky-800/50 hover:scale-110 transition-all duration-300 cursor-default hover-lift">
+                <span class="px-3 py-1 bg-white dark:bg-gray-900 text-sky-900 dark:text-sky-100 rounded-full text-sm font-medium hover:bg-sky-200 dark:hover:bg-sky-800/50 hover:scale-110 transition-all duration-300 cursor-default hover-lift">
                   Tailwind
                 </span>
               </div>
@@ -74,13 +74,13 @@
             <div class="space-y-3">
               <h4 class="font-semibold text-gray-900 dark:text-white">Backend</h4>
               <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium hover:bg-blue-200 dark:hover:bg-blue-800/50 hover:scale-110 transition-all duration-300 cursor-default hover-lift">
+                <span class="px-3 py-1 bg-white dark:bg-gray-900 text-blue-900 dark:text-blue-100 rounded-full text-sm font-medium hover:bg-blue-200 dark:hover:bg-blue-800/50 hover:scale-110 transition-all duration-300 cursor-default hover-lift">
                   Laravel
                 </span>
-                <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium hover:bg-blue-200 dark:hover:bg-blue-800/50 hover:scale-110 transition-all duration-300 cursor-default hover-lift">
+                <span class="px-3 py-1 bg-white dark:bg-gray-900 text-blue-900 dark:text-blue-100 rounded-full text-sm font-medium hover:bg-blue-200 dark:hover:bg-blue-800/80 hover:scale-110 transition-all duration-300 cursor-default hover-lift">
                   PHP
                 </span>
-                <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium hover:bg-blue-200 dark:hover:bg-blue-800/50 hover:scale-110 transition-all duration-300 cursor-default hover-lift">
+                <span class="px-3 py-1 bg-white dark:bg-gray-900 text-blue-900 dark:text-blue-100 rounded-full text-sm font-medium hover:bg-blue-200 dark:hover:bg-blue-800/50 hover:scale-110 transition-all duration-300 cursor-default hover-lift">
                   MySQL
                 </span>
               </div>
