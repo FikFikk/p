@@ -31,7 +31,7 @@ export default defineNuxtConfig({
         { name: 'robots', content: 'index, follow' },
         { name: 'theme-color', content: '#0ea5e9' },
         // Mobile performance & SEO best practice
-        { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' },
+  { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
