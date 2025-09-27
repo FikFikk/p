@@ -1,15 +1,27 @@
 User-agent: *
 Allow: /
+Disallow:
 
-# Sitemap
+# Sitemap location
 Sitemap: https://fikfikk.my.id/sitemap.xml
 
-# Block specific crawlers if needed
-# User-agent: BadBot
-# Disallow: /
+# Allow crawling of all resources for SEO
+Allow: /img/
+Allow: /_nuxt/
+Allow: /favicon.ico
+Allow: /manifest.json
 
-# Allow all content for SEO
-Disallow:
+# Block admin or sensitive paths (if any)
+# Disallow: /admin/
+# Disallow: /private/
 
 # Crawl-delay for polite crawlers (optional)
 # Crawl-delay: 1
+
+# Googlebot-specific rules (optional)
+User-agent: Googlebot
+Allow: /
+
+# Bingbot-specific rules (optional)
+User-agent: Bingbot
+Allow: /

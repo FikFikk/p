@@ -29,7 +29,14 @@ export default defineNuxtConfig({
         { name: 'twitter:image', content: 'https://fikfikk.my.id/favicon.ico' },
         // Additional SEO
         { name: 'robots', content: 'index, follow' },
-        { name: 'theme-color', content: '#0ea5e9' }
+        { name: 'theme-color', content: '#0ea5e9' },
+        // Mobile performance & SEO best practice
+        { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' },
+        { name: 'mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+        { name: 'HandheldFriendly', content: 'True' },
+        { name: 'format-detection', content: 'telephone=no' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
